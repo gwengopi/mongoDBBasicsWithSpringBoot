@@ -24,9 +24,11 @@ public interface StudentRepository extends MongoRepository<Student, String> {
 	List<Student> findByEmailIsLike (String email);
 	
 	List<Student> findByNameStartsWith (String name);
+
+	List<Student> findByEmailEndsWith(String email);
 	
 	List<Student> findByDepartmentId (String deptId);
 
-	@Query("{ \"name\" : \"?0\" }")
+	@Query("{ 'name' : '?0' }")
 	List<Student> getByName(String name);
 }
