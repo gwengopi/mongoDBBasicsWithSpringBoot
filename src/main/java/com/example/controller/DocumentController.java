@@ -72,12 +72,12 @@ public class DocumentController {
 
     // Find products with price greater than 50 and sort by name
     @GetMapping("/expensive-products")
-    public List<Document> findExpensiveProducts() {
+    public List<Object> findExpensiveProducts() {
         Aggregation aggregation = Aggregation.newAggregation(
                 Aggregation.match(Criteria.where("price").gt(50)),
                 Aggregation.sort(Sort.Direction.ASC, "name")
         );
-        AggregationResults<Document> result = mongoTemplate.aggregate(aggregation, defaultCollectionName, Document.class);
+        AggregationResults<Object> result = mongoTemplate.aggregate(aggregation, defaultCollectionName, Object.class);
         return result.getMappedResults();
     }
 
